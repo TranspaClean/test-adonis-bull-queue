@@ -16,7 +16,9 @@ import bull from '@acidiney/bull-queue/services/main'
 import TestJob, { TestPayload } from '#app/jobs/test'
 
 await app.booted(async () => {
-  bull.dispatch(TestJob.name, { userId: '123456' } as TestPayload)
+  bull.dispatch(TestJob.name, { userId: '123456' } as TestPayload, {
+    queueName: 'default',
+  })
 })
 
 /**

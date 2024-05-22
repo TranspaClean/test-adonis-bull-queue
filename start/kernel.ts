@@ -16,7 +16,14 @@ import bull from '@acidiney/bull-queue/services/main'
 import TestJob, { TestPayload } from '#app/jobs/test'
 
 await app.booted(async () => {
-  bull.dispatch(TestJob.name, { userId: '123456' } as TestPayload, {
+  bull.dispatch(TestJob.name, { type: 'cron' } as TestPayload, {
+    queueName: 'default',
+    repeat: {
+      pattern: '10 10 */12 * * *',
+    },
+  })
+
+  bull.dispatch(TestJob.name, { type: 'onetime' } as TestPayload, {
     queueName: 'default',
   })
 })

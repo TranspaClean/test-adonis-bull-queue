@@ -45,5 +45,5 @@ export default defineConfig({
     removeOnFail: 100,
   },
   queueNames: ['default'],
-  queuePrefix: '@bull-',
+  queuePrefix: '',
 })
